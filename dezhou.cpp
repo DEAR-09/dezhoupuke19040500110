@@ -270,7 +270,7 @@ int main(void)
 	{if((z1==7)||(z1==1)||(z1==5)||(z1==6))flag=f5(q,w);
 	 else if((z1==2)||(z1==3)||(z1==4))flag=f6(q,w);
 	}
-	printf("%d %d",z1,z2);
+	//printf("%d %d",z1,z2);
 	if(flag==1)printf("Black wins!");
 	else if(flag==2)printf("White wins!");
 	else printf("Tie.");
