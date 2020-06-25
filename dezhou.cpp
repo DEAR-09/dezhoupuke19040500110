@@ -58,23 +58,20 @@ int f2(int *a)//三条 对子 双对 散牌
     return level;
 }
 int f3(int *a)//同花 
-{	int i,flag[4],level;
-	for(i=1;i<6;i++)
-	{if(a[2*i]==100)flag[0]++;
-	else if(a[2*i]==200)flag[1]++;
-	else if(a[2*i]==300)flag[2]++;
-	else if(a[2*i]==400)flag[3]++;
+{	int i,flag[4]={0,0,0,0},level=5;
+	for(i=0;i<10;i++)
+	{if(a[i]==100)flag[0]++;
+	else if(a[i]==200)flag[1]++;
+	else if(a[i]==300)flag[2]++;
+	else if(a[i]==400)flag[3]++;
 	}
 	for(i=0;i<4;i++)
 	{if(flag[i]==5)
-	 {level=7;return level;
+	 {level=7;
 	 break;
 	 }
-	 else if(flag[3]!=5)
-	 {level=5;return level;
-	 break;
 	 }
-	}
+	return level;
 }
 int f4(int *a)//牌面 
 {
@@ -238,9 +235,9 @@ int main(void)
 	z1=f3(q);x1=f1(q);c1=f2(q);
 	if(z1==7)
 	{if(x1==7)z1=7;
-	 if(x1==4)z1=6;
+	  else if(x1==4)z1=6;
 	}
-	if(z1==5)
+	else if(z1==5)
 	{if(x1==4){
 	if(c1==1)z1=1;
 	else if(c1==2)z1=2;
@@ -253,9 +250,9 @@ int main(void)
 	z2=f3(w);x2=f1(w);c2=f2(w);
 	if(z2==7)
 	{if(x2==7)z2=7;
-	 if(x2==4)z2=6;
+	 else if(x2==4)z2=6;
 	}
-	if(z2==5)
+	else if(z2==5)
 	{if(x2==4){
 	if(c2==1)z2=1;
 	else if(c2==2)z2=2;
@@ -273,8 +270,9 @@ int main(void)
 	{if((z1==7)||(z1==1)||(z1==5)||(z1==6))flag=f5(q,w);
 	 else if((z1==2)||(z1==3)||(z1==4))flag=f6(q,w);
 	}
-	if(flag==1)printf("White wins!");
-	else if(flag==2)printf("Black wins!");
+	printf("%d %d",z1,z2);
+	if(flag==1)printf("Black wins!");
+	else if(flag==2)printf("White wins!");
 	else printf("Tie.");
 	printf("\n");
 	system("pause");
