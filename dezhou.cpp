@@ -76,6 +76,22 @@ int f3(int *a)//同花
 	 }
 	}
 }
+int f4(int *a)//牌面 
+{
+    int i,j;
+    int v;
+    for(i = 0; i <4; i ++)
+        for(j = i+1; j < 5; j ++)
+        {
+            if(a[2*i]>a[2*j])
+            {
+                v=a[2*i];
+                a[2*i]=a[2*j];
+                a[2*j]=v;
+            }
+        }
+     return a[8];
+}
 int f(char a)
 {	int i,q=0;
 		{if(a!=' ')
@@ -120,10 +136,10 @@ int f(char a)
 		}
 	return q;
 }
-int main()
+int main(void)
 {
 	char a[20],b[20];
-	int q[20],w[20],i=0,j=0;
+	int q[20],w[20],i=0,j=0,z1,z2,x1,x2,c1,c2,v1,v2;
 	printf("Black:");
 	gets(a);
 	printf("White:");
@@ -134,7 +150,8 @@ int main()
 	  i++;
 	 }
 	 j++;
-	}j=0;i=0;
+	}
+	j=0;i=0;
 	while(i<10)
 	{if(f(b[j])!=0)
 	 {w[i]=f(b[j]);
@@ -142,6 +159,37 @@ int main()
 	 }
 	 j++;
 	}
-	for(int i=0;i<10;i++)
-	printf("%d %d \n",q[i],w[i]);
- }
+	z1=f3(q);x1=f1(q);c1=f2(q);
+	if(z1==7)
+	{if(x1==7)z1=7;
+	 if(x1==4)z1=6;
+	}
+	if(z1==5)
+	{if(x1==4){
+	if(c1==1)z1=1;
+	else if(c1==2)z1=2;
+	else if(c1==3)z1=3;
+	else if(c1==4)z1=4;
+			  }
+	else if(x1==7)z1=5;
+	}
+	
+	z2=f3(w);x2=f1(w);c2=f2(w);
+	if(z2==7)
+	{if(x2==7)z2=7;
+	 if(x2==4)z2=6;
+	}
+	if(z2==5)
+	{if(x2==4){
+	if(c2==1)z2=1;
+	else if(c2==2)z2=2;
+	else if(c2==3)z2=3;
+	else if(c2==4)z2=4;
+			  }
+	else if(x2==7)z2=5;
+	}
+	v2=f4(q);
+	v2=f4(w);
+	//开始比较 
+	
+}
