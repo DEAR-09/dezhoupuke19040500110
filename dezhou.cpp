@@ -92,6 +92,82 @@ int f4(int *a)//牌面
         }
      return a[8];
 }
+int f5(int *a,int *b)//小牌面 
+{
+    int i,j,k=0;
+    int v;
+    for(i = 0; i <4; i ++)
+        for(j = i+1; j < 5; j ++)
+        {
+            if(a[2*i]>a[2*j])
+            {
+                v=a[2*i];
+                a[2*i]=a[2*j];
+                a[2*j]=v;
+            }
+        }
+		for(i = 0; i <4; i ++)
+	    for(j = i+1; j < 5; j ++)
+	    {
+	        if(b[2*i]>b[2*j])
+	        {
+	            v=b[2*i];
+	            b[2*i]=b[2*j];
+	            b[2*j]=v;
+	        }
+	    }
+	for(i=4;i>=0;i--)
+	{if(a[i]>b[i])k=1;
+	 else if(a[i]<b[i])k=2;
+	 else continue;
+	}
+     return k;
+}
+int f6(int *a,int *b)//对牌
+{
+    int i,j,k=0,s=1,z,x;
+    int v;
+    for(i = 0; i <4; i ++)
+        for(j = i+1; j < 5; j ++)
+        {
+            if(a[2*i]>a[2*j])
+            {
+                v=a[2*i];
+                a[2*i]=a[2*j];
+                a[2*j]=v;
+            }
+        }
+		for(i = 0; i <4; i ++)
+	    for(j = i+1; j < 5; j ++)
+	    {
+	        if(b[2*i]>b[2*j])
+	        {
+	            v=b[2*i];
+	            b[2*i]=b[2*j];
+	            b[2*j]=v;
+	        }
+	    }
+	for(i = 0; i < 4; i=i+2)
+    {if(a[i]==a[i+2])
+     {s++;
+	  if(s==3)z=a[i];
+	  else if(s==2)z=a[i];
+	  }
+	 else s=1;
+	 }
+	 s=1;
+	 for(i = 0; i < 4; i=i+2)
+    {if(b[i]==b[i+2])
+     {s++;
+	  if(s==3)x=b[i];
+	  else if(s==2)x=b[i];
+	  }
+	 else s=1;
+	 }
+	 if(z>x)k=1;
+	 else if(z<x)k=2;
+     return k;
+}
 int f(char a)
 {	int i,q=0;
 		{if(a!=' ')
@@ -139,7 +215,7 @@ int f(char a)
 int main(void)
 {
 	char a[20],b[20];
-	int q[20],w[20],i=0,j=0,z1,z2,x1,x2,c1,c2,v1,v2;
+	int q[20],w[20],i=0,j=0,z1,z2,x1,x2,c1,c2,v1,v2,flag=0;
 	printf("Black:");
 	gets(a);
 	printf("White:");
@@ -191,5 +267,15 @@ int main(void)
 	v2=f4(q);
 	v2=f4(w);
 	//开始比较 
-	
+	if(z1>z2)flag=1;
+	else if(z1<z2)flag=2;
+	else
+	{if((z1==7)||(z1==1)||(z1==5)||(z1==6))flag=f5(q,w);
+	 else if((z1==2)||(z1==3)||(z1==4))flag=f6(q,w);
+	}
+	if(flag==1)printf("White wins!");
+	else if(flag==2)printf("Black wins!");
+	else printf("Tie.");
+	printf("\n");
+	system("pause");
 }
