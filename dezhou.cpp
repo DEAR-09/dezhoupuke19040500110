@@ -261,7 +261,7 @@ int main(void)
 			  }
 	else if(x2==7)z2=5;
 	}
-	v2=f4(q);
+	v1=f4(q);
 	v2=f4(w);
 	//开始比较 
 	if(z1>z2)flag=1;
